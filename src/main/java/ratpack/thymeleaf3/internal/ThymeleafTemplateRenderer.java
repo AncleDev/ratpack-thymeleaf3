@@ -37,7 +37,7 @@ public class ThymeleafTemplateRenderer extends RendererSupport<Template> {
     String contentType = template.getContentType();
     contentType = contentType == null ? "text/html" : contentType;
     try {
-      ctx.getResponse().send(contentType, thymeleaf.process(template.getName(), template.getModel(), template.getFragmentSpec()));
+      ctx.getResponse().send(contentType, thymeleaf.process(template.getName(), template.getModel()));
     } catch (Exception e) {
       ctx.error(e);
     }

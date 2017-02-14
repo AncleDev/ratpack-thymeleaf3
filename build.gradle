@@ -27,7 +27,13 @@ buildscript {
 
 apply plugin: "io.ratpack.ratpack-java"
 
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
 dependencies {
+    compile ratpack.dependency("guice")
     compile('org.thymeleaf:thymeleaf:3.0.3.RELEASE') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
         exclude group: 'org.javassist', module: 'javassist'

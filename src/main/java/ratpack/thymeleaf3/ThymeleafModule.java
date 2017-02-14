@@ -24,12 +24,11 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.cache.ICacheManager;
 import org.thymeleaf.cache.StandardCacheManager;
 import org.thymeleaf.dialect.IDialect;
-import org.thymeleaf.resourceresolver.IResourceResolver;
+import org.thymeleaf.templateresolver.AbstractConfigurableTemplateResolver;
+import org.thymeleaf.templateresolver.FileTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-import org.thymeleaf.templateresolver.TemplateResolver;
 import ratpack.guice.ConfigurableModule;
 import ratpack.server.ServerConfig;
-import ratpack.thymeleaf3.internal.FileSystemBindingThymeleafResourceResolver;
 import ratpack.thymeleaf3.internal.ThymeleafTemplateRenderer;
 
 import java.io.File;
@@ -237,9 +236,7 @@ public class ThymeleafModule extends ConfigurableModule<ThymeleafModule.Config> 
   @Provides
   @Singleton
   ITemplateResolver provideTemplateResolver(ServerConfig serverConfig, Config config) {
-    IResourceResolver resourceResolver = new FileSystemBindingThymeleafResourceResolver(serverConfig.getBaseDir());
-    TemplateResolver templateResolver = new TemplateResolver();
-    templateResolver.setResourceResolver(resourceResolver);
+    AbstractConfigurableTemplateResolver templateResolver = new FileTemplateResolver();
     templateResolver.setTemplateMode(getTemplatesModeSetting(config));
     templateResolver.setPrefix(getTemplatesPrefixSetting(config));
     templateResolver.setSuffix(getTemplatesSuffixSetting(config));
