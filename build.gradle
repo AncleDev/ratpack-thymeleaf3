@@ -29,13 +29,9 @@ apply plugin: "io.ratpack.ratpack-java"
 
 repositories {
     jcenter()
-    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-
-    compile 'com.github.jitpack:gradle-simple:1.0'
-
     compile ratpack.dependency("guice")
     compile('org.thymeleaf:thymeleaf:3.0.3.RELEASE') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
@@ -44,3 +40,4 @@ dependencies {
     runtime 'org.slf4j:slf4j-api'
     compile 'javax.servlet:javax.servlet-api:3.1.0'
 }
+
