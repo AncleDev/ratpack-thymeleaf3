@@ -31,55 +31,55 @@ import java.util.function.Consumer;
 
 public class Template {
 
-  private final String name;
-  private final WebContext model;
-  private final String contentType;
+    private final String name;
+    private final WebContext model;
+    private final String contentType;
 
-  public String getName() {
-    return name;
-  }
-
-  public WebContext getModel() {
-    return model;
-  }
-
-  public String getContentType() {
-    return contentType;
-  }
-
-  private Template(String name, WebContext model, String contentType) {
-    this.name = name;
-    this.model = model;
-    this.contentType = contentType;
-  }
-
-  public static Template thymeleafTemplate(String name) {
-    return thymeleafTemplate(Collections.emptyMap(), name);
-  }
-
-  public static Template thymeleafTemplate(Map<String, ?> model, String name) {
-    return thymeleafTemplate(model, name, null);
-  }
-
-  public static Template thymeleafTemplate(String name, Consumer<? super ImmutableMap.Builder<String, Object>> modelBuilder) {
-    return thymeleafTemplate(name, null, modelBuilder);
-  }
-
-  public static Template thymeleafTemplate(String name, String contentType, Consumer<? super ImmutableMap.Builder<String, Object>> modelBuilder) {
-    ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
-    modelBuilder.accept(builder);
-    return thymeleafTemplate(builder.build(), name, contentType);
-  }
-
-  public static Template thymeleafTemplate(Map<String, ?> model, String name, String contentType) {
-    HttpServletRequest request = new ThymeleafHttpServletRequestAdapter();
-    HttpServletResponse response = new ThymeleafHttpServletResponseAdapter();
-    ServletContext servletContext = new ThymeleafServletContextAdapter();
-    WebContext context = new WebContext(request, response, servletContext);
-    if (model != null) {
-      context.setVariables((Map<String, Object>) model);
+    public String getName() {
+        return name;
     }
 
-    return new Template(name, context, contentType);
-  }
+    public WebContext getModel() {
+        return model;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    private Template(String name, WebContext model, String contentType) {
+        this.name = name;
+        this.model = model;
+        this.contentType = contentType;
+    }
+
+    public static Template thymeleafTemplate(String name) {
+        return thymeleafTemplate(Collections.emptyMap(), name);
+    }
+
+    public static Template thymeleafTemplate(Map<String, ?> model, String name) {
+        return thymeleafTemplate(model, name, null);
+    }
+
+    public static Template thymeleafTemplate(String name, Consumer<? super ImmutableMap.Builder<String, Object>> modelBuilder) {
+        return thymeleafTemplate(name, null, modelBuilder);
+    }
+
+    public static Template thymeleafTemplate(String name, String contentType, Consumer<? super ImmutableMap.Builder<String, Object>> modelBuilder) {
+        ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
+        modelBuilder.accept(builder);
+        return thymeleafTemplate(builder.build(), name, contentType);
+    }
+
+    public static Template thymeleafTemplate(Map<String, ?> model, String name, String contentType) {
+        HttpServletRequest request = new ThymeleafHttpServletRequestAdapter();
+        HttpServletResponse response = new ThymeleafHttpServletResponseAdapter();
+        ServletContext servletContext = new ThymeleafServletContextAdapter();
+        WebContext context = new WebContext(request, response, servletContext);
+        if (model != null) {
+            context.setVariables((Map<String, Object>) model);
+        }
+
+        return new Template(name, context, contentType);
+    }
 }

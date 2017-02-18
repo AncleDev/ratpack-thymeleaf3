@@ -21,11 +21,13 @@ import org.thymeleaf.dom.Element
 import org.thymeleaf.processor.attr.AbstractTextChildModifierAttrProcessor
 
 class SayToAttrProcessor extends AbstractTextChildModifierAttrProcessor {
-  int precedence = 10000
-  SayToAttrProcessor() {
-    super('sayto')
-  }
-  protected String getText(Arguments arguments, Element element, String attributeName) {
-    return "Hello, ${element.getAttributeValue(attributeName)}!"
-  }
+    int precedence = 10000
+
+    SayToAttrProcessor() {
+        super('sayto')
+    }
+
+    protected String getText(Arguments arguments, Element element, String attributeName) {
+        return "Hello, ${element.getAttributeValue(attributeName)}!"
+    }
 }

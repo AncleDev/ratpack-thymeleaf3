@@ -20,6 +20,6 @@ import org.thymeleaf.dialect.AbstractDialect
 import org.thymeleaf.processor.IProcessor
 
 class HelloDialect extends AbstractDialect {
-  String prefix = 'hello'
-  Set<IProcessor> processors = [new SayToAttrProcessor()] as Set
+    String prefix = 'hello'
+    Set<IProcessor> processors = [new SayToAttrProcessor()] as Set
 }

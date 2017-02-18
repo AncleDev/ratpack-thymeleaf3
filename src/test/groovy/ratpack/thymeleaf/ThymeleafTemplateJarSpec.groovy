@@ -18,8 +18,8 @@ package ratpack.thymeleaf3
 
 class ThymeleafTemplateJarSpec extends ThymeleafTemplateSpec {
 
-  def setup() {
-    useJarBaseDir()
-  }
+    def setup() {
+        useJarBaseDir()
+    }
 
 }

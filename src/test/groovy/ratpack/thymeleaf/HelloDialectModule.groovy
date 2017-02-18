@@ -21,7 +21,7 @@ import com.google.inject.multibindings.Multibinder
 import org.thymeleaf.dialect.IDialect
 
 class HelloDialectModule extends AbstractModule {
-  protected void configure() {
-    Multibinder.newSetBinder(binder(), IDialect).addBinding().to(HelloDialect)
-  }
+    protected void configure() {
+        Multibinder.newSetBinder(binder(), IDialect).addBinding().to(HelloDialect)
+    }
 }

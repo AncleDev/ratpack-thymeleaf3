@@ -25,21 +25,21 @@ import javax.inject.Inject;
 
 public class ThymeleafTemplateRenderer extends RendererSupport<Template> {
 
-  private final TemplateEngine thymeleaf;
+    private final TemplateEngine thymeleaf;
 
-  @Inject
-  public ThymeleafTemplateRenderer(TemplateEngine thymeleaf) {
-    this.thymeleaf = thymeleaf;
-  }
-
-  @Override
-  public void render(Context ctx, Template template) {
-    String contentType = template.getContentType();
-    contentType = contentType == null ? "text/html" : contentType;
-    try {
-      ctx.getResponse().send(contentType, thymeleaf.process(template.getName(), template.getModel()));
-    } catch (Exception e) {
-      ctx.error(e);
+    @Inject
+    public ThymeleafTemplateRenderer(TemplateEngine thymeleaf) {
+        this.thymeleaf = thymeleaf;
     }
-  }
+
+    @Override
+    public void render(Context ctx, Template template) {
+        String contentType = template.getContentType();
+        contentType = contentType == null ? "text/html" : contentType;
+        try {
+            ctx.getResponse().send(contentType, thymeleaf.process(template.getName(), template.getModel()));
+        } catch (Exception e) {
+            ctx.error(e);
+        }
+    }
 }
