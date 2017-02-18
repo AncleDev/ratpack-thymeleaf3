@@ -33,6 +33,9 @@ repositories {
 }
 
 dependencies {
+
+    compile 'com.github.jitpack:gradle-simple:1.0'
+
     compile ratpack.dependency("guice")
     compile('org.thymeleaf:thymeleaf:3.0.3.RELEASE') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
