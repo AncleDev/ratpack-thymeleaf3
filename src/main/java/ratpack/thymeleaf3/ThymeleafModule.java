@@ -238,7 +238,7 @@ public class ThymeleafModule extends ConfigurableModule<ThymeleafModule.Config> 
   ITemplateResolver provideTemplateResolver(ServerConfig serverConfig, Config config) {
     AbstractConfigurableTemplateResolver templateResolver = new FileTemplateResolver();
     templateResolver.setTemplateMode(getTemplatesModeSetting(config));
-    templateResolver.setPrefix(getTemplatesPrefixSetting(config));
+    templateResolver.setPrefix(getClass().getClassLoader().getResource(getTemplatesPrefixSetting(config)).getPath());
     templateResolver.setSuffix(getTemplatesSuffixSetting(config));
     templateResolver.setCacheable(getCacheSizeSetting(config) > 0);
     templateResolver.setCacheTTLMs(null); // Never use TTL expiration
